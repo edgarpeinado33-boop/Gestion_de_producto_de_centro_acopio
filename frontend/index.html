@@ -1,58 +1,97 @@
 <!DOCTYPE html>
+<!-- Declara que este es un documento HTML5 -->
 <html lang="es">
+<!-- Elemento raíz del documento, especifica que el idioma es español -->
 <head>
+  <!-- Encabezado del documento, contiene metadatos y enlaces a recursos externos -->
   <meta charset="UTF-8">
+  <!-- Define la codificación de caracteres como UTF-8 para soportar caracteres especiales -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Configura la vista para dispositivos móviles, asegurando que se adapte al ancho del dispositivo -->
   <title>♻️ Registro de Compras de Papel en Desuso</title>
+  <!-- Título de la página que aparece en la pestaña del navegador -->
   <link rel="stylesheet" href="style.css">
+  <!-- Enlace al archivo CSS personalizado para los estilos de la aplicación -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Enlace a Font Awesome para usar iconos en la interfaz -->
 </head>
 <body>
+  <!-- Cuerpo del documento, contiene todo el contenido visible -->
   <div class="container">
+    <!-- Contenedor principal para organizar el contenido -->
     <header>
+      <!-- Encabezado de la página -->
       <h1><i class="fas fa-recycle"></i> Centro de Acopio de Papel</h1>
+      <!-- Título principal con icono de reciclaje -->
       <p>Registro de Compras en Desuso</p>
+      <!-- Subtítulo descriptivo -->
     </header>
 
     <div class="tabs">
+      <!-- Contenedor para las pestañas de navegación -->
       <button class="tab-button active" data-tab="registro">Registrar Compra</button>
+      <!-- Botón de pestaña para registrar compras, activo por defecto -->
       <button class="tab-button" data-tab="gestion">Gestionar Compras</button>
+      <!-- Botón de pestaña para gestionar compras existentes -->
     </div>
 
     <!-- Pestaña de Registro -->
     <div id="registro" class="tab-content active">
+      <!-- Contenido de la pestaña de registro, visible por defecto -->
       <form id="formCompra" class="card">
+        <!-- Formulario para registrar nuevas compras -->
         <div class="form-group">
+          <!-- Grupo de formulario para el campo cliente -->
           <label for="cliente"><i class="fas fa-user"></i> Cliente:</label>
+          <!-- Etiqueta del campo con icono de usuario -->
           <input type="text" id="cliente" name="cliente" placeholder="Nombre completo del cliente" required>
+          <!-- Campo de entrada de texto para el nombre del cliente, obligatorio -->
         </div>
 
         <table id="tablaCompras">
+          <!-- Tabla para mostrar los items de la compra -->
           <thead>
+            <!-- Encabezado de la tabla -->
             <tr>
+              <!-- Fila de encabezados -->
               <th>Tipo de Papel</th>
+              <!-- Columna para el tipo de papel -->
               <th>Cantidad (kg)</th>
+              <!-- Columna para la cantidad en kilogramos -->
               <th>Precio (Bs/kg)</th>
+              <!-- Columna para el precio por kilogramo -->
               <th>Total (Bs)</th>
+              <!-- Columna para el total del item -->
               <th>Acciones</th>
+              <!-- Columna para botones de acciones -->
             </tr>
           </thead>
-          <tbody id="detalle"></tbody>
+          <tbody id="detalle">
+            <!-- Cuerpo de la tabla donde se agregarán dinámicamente los items -->
+          </tbody>
         </table>
 
         <div class="actions">
+          <!-- Contenedor para botones de acción -->
           <button type="button" id="agregarItem" class="btn-primary">
+            <!-- Botón para agregar nuevos items a la compra -->
             <i class="fas fa-plus"></i> Agregar Ítem
+            <!-- Icono de suma y texto del botón -->
           </button>
         </div>
 
         <div class="resumen">
+          <!-- Sección para mostrar el resumen total de la compra -->
           <h3>Total General: <span id="totalGeneral">0.00</span> Bs</h3>
+          <!-- Muestra el total general de la compra, actualizado dinámicamente -->
         </div>
 
         <div class="actions">
+          <!-- Contenedor para botones de acción del formulario -->
           <button type="submit" class="btn-success">
+            <!-- Botón para enviar el formulario y guardar la compra -->
             <i class="fas fa-save"></i> Guardar Compra
+            <!-- Icono de guardar y texto del botón -->
           </button>
         </div>
       </form>
@@ -60,20 +99,33 @@
 
     <!-- Pestaña de Gestión -->
     <div id="gestion" class="tab-content">
+      <!-- Contenido de la pestaña de gestión, oculto por defecto -->
       <div class="card">
+        <!-- Tarjeta contenedora para la lista de compras -->
         <h2><i class="fas fa-list"></i> Lista de Compras Registradas</h2>
+        <!-- Título de la sección con icono de lista -->
         <div class="table-container">
+          <!-- Contenedor para la tabla con scroll si es necesario -->
           <table id="tablaComprasRegistradas">
+            <!-- Tabla para mostrar las compras registradas -->
             <thead>
+              <!-- Encabezado de la tabla -->
               <tr>
+                <!-- Fila de encabezados -->
                 <th>ID</th>
+                <!-- Columna para el identificador único de la compra -->
                 <th>Cliente</th>
+                <!-- Columna para el nombre del cliente -->
                 <th>Fecha</th>
+                <!-- Columna para la fecha de la compra -->
                 <th>Total (Bs)</th>
+                <!-- Columna para el total de la compra -->
                 <th>Acciones</th>
+                <!-- Columna para botones de editar/eliminar -->
               </tr>
             </thead>
             <tbody id="listaCompras">
+              <!-- Cuerpo de la tabla donde se cargarán dinámicamente las compras -->
               <!-- Las compras se cargarán aquí dinámicamente -->
             </tbody>
           </table>
@@ -84,74 +136,116 @@
 
   <!-- Modal para editar compra -->
   <div id="modalEditar" class="modal">
+    <!-- Ventana modal para editar compras existentes -->
     <div class="modal-content" style="max-width: 800px;">
+      <!-- Contenido del modal con ancho máximo definido -->
       <div class="modal-header">
+        <!-- Encabezado del modal -->
         <h2><i class="fas fa-edit"></i> Editar Compra Completa</h2>
+        <!-- Título del modal con icono de edición -->
         <span class="close">&times;</span>
+        <!-- Botón para cerrar el modal (X) -->
       </div>
       <div class="modal-body">
+        <!-- Cuerpo del modal -->
         <form id="formEditarCompra">
+          <!-- Formulario para editar la compra -->
           <input type="hidden" id="editarId">
+          <!-- Campo oculto para almacenar el ID de la compra que se está editando -->
           
           <!-- Información de la compra -->
           <div class="info-compra">
+            <!-- Sección para mostrar información de la compra -->
             <h4><i class="fas fa-receipt"></i> Información de la Compra</h4>
+            <!-- Subtítulo con icono de recibo -->
             <div class="info-grid">
+              <!-- Contenedor en grid para la información -->
               <div class="info-item">
+                <!-- Item de información -->
                 <strong>ID Compra:</strong> <span id="infoId">-</span>
+                <!-- Muestra el ID de la compra -->
               </div>
               <div class="info-item">
+                <!-- Item de información -->
                 <strong>Fecha:</strong> <span id="infoFecha">-</span>
+                <!-- Muestra la fecha de la compra -->
               </div>
               <div class="info-item">
+                <!-- Item de información -->
                 <strong>Total General:</strong> <span id="infoTotal">0.00</span> Bs
+                <!-- Muestra el total general de la compra -->
               </div>
             </div>
           </div>
 
           <!-- Cliente -->
           <div class="form-group">
+            <!-- Grupo de formulario para el campo cliente -->
             <label for="editarCliente"><i class="fas fa-user"></i> Cliente:</label>
+            <!-- Etiqueta del campo con icono de usuario -->
             <input type="text" id="editarCliente" placeholder="Nombre del cliente" required>
+            <!-- Campo de entrada para editar el nombre del cliente -->
           </div>
           
           <!-- Items de la compra -->
           <div class="seccion-items">
+            <!-- Sección para los items de la compra -->
             <h4><i class="fas fa-list"></i> Items de la Compra</h4>
+            <!-- Subtítulo con icono de lista -->
             <div class="table-container">
+              <!-- Contenedor para la tabla con scroll si es necesario -->
               <table id="tablaEditarItems">
+                <!-- Tabla para editar los items de la compra -->
                 <thead>
+                  <!-- Encabezado de la tabla -->
                   <tr>
+                    <!-- Fila de encabezados -->
                     <th>Tipo de Papel</th>
+                    <!-- Columna para el tipo de papel -->
                     <th>Cantidad (kg)</th>
+                    <!-- Columna para la cantidad en kilogramos -->
                     <th>Precio (Bs/kg)</th>
+                    <!-- Columna para el precio por kilogramo -->
                     <th>Total (Bs)</th>
+                    <!-- Columna para el total del item -->
                     <th>Acciones</th>
+                    <!-- Columna para botones de acciones -->
                   </tr>
                 </thead>
                 <tbody id="detalleEditar">
+                  <!-- Cuerpo de la tabla donde se cargarán dinámicamente los items -->
                   <!-- Los items se cargarán aquí dinámicamente -->
                 </tbody>
               </table>
             </div>
             <div class="actions">
+              <!-- Contenedor para botones de acción -->
               <button type="button" id="agregarItemEditar" class="btn-primary">
+                <!-- Botón para agregar nuevos items en la edición -->
                 <i class="fas fa-plus"></i> Agregar Ítem
+                <!-- Icono de suma y texto del botón -->
               </button>
             </div>
           </div>
 
           <!-- Resumen -->
           <div class="resumen-editar">
+            <!-- Sección para mostrar el resumen total en la edición -->
             <h3>Total General: <span id="totalGeneralEditar">0.00</span> Bs</h3>
+            <!-- Muestra el total general actualizado de la compra en edición -->
           </div>
           
           <div class="actions">
+            <!-- Contenedor para botones de acción del formulario de edición -->
             <button type="submit" class="btn-success">
+              <!-- Botón para guardar los cambios de la edición -->
               <i class="fas fa-save"></i> Guardar Cambios
+              <!-- Icono de guardar y texto del botón -->
             </button>
             <button type="button" class="btn-primary" onclick="cerrarModal()">
+              <!-- Botón para cancelar la edición y cerrar el modal -->
               <i class="fas fa-times"></i> Cancelar
+              <!-- Icono de cerrar y texto del botón -->
             </button>
           </div>
         </form>
@@ -160,9 +254,12 @@
   </div>
 
   <footer>
+    <!-- Pie de página -->
     <p>© 2025 Centro de Acopio | Desarrollado con <i class="fas fa-heart"></i> y PHP + JS</p>
+    <!-- Texto del pie de página con icono de corazón y tecnologías utilizadas -->
   </footer>
 
   <script src="script.js"></script>
+  <!-- Enlace al archivo JavaScript que contiene la lógica de la aplicación -->
 </body>
 </html>

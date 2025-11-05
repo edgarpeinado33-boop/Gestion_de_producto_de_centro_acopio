@@ -1,483 +1,944 @@
-/* === ESTILO GENERAL === */
+/* === ESTILO GENERAL MEJORADO === */
 :root {
-  --primary-color: #1e88e5;
-  --secondary-color: #43a047;
-  --danger-color: #e53935;
-  --warning-color: #ff9800;
-  --light-color: #f5f5f5;
-  --dark-color: #2c3e50;
-  --shadow: 0 4px 10px rgba(0,0,0,0.1);
-  --radius: 12px;
+  --primary-color: #1e88e5; /* Color primario azul */
+  --secondary-color: #43a047; /* Color secundario verde */
+  --danger-color: #e53935; /* Color rojo para peligro */
+  --warning-color: #ff9800; /* Color naranja para advertencias */
+  --light-color: #f5f5f5; /* Color claro de fondo */
+  --dark-color: #2c3e50; /* Color oscuro para texto */
+  --accent-color: #ff4081; /* Color de acento rosado */
+  --title-color: #ffffff; /* Color blanco para títulos */
+  --title-shadow: #1565c0; /* Color de sombra para títulos */
+  --gradient-primary: linear-gradient(135deg, #1e88e5, #1565c0); /* Gradiente azul */
+  --gradient-success: linear-gradient(135deg, #43a047, #2e7d32); /* Gradiente verde */
+  --gradient-warning: linear-gradient(135deg, #ff9800, #f57c00); /* Gradiente naranja */
+  --gradient-danger: linear-gradient(135deg, #e53935, #c62828); /* Gradiente rojo */
+  --gradient-bg: linear-gradient(135deg, #667eea 0%, #764ba2 100%); /* Gradiente de fondo principal */
+  --gradient-title: linear-gradient(135deg, #ffffff, #e3f2fd); /* Gradiente para títulos */
+  --shadow: 0 8px 25px rgba(0,0,0,0.1); /* Sombra estándar */
+  --shadow-hover: 0 15px 35px rgba(0,0,0,0.15); /* Sombra al hacer hover */
+  --radius: 16px; /* Radio de borde estándar */
+  --transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Transición suave */
 }
 
+/* Reset de box model para todos los elementos */
 * {
   box-sizing: border-box;
 }
 
+/* Estilos generales del cuerpo */
 body {
-  font-family: 'Segoe UI', Tahoma, sans-serif;
-  background: linear-gradient(120deg, #e0f7fa, #e8f5e9);
-  margin: 0;
-  padding: 0;
-  color: var(--dark-color);
-  line-height: 1.6;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Fuente moderna */
+  background: var(--gradient-bg); /* Fondo con gradiente */
+  margin: 0; /* Sin margen */
+  padding: 0; /* Sin padding */
+  color: var(--dark-color); /* Color de texto oscuro */
+  line-height: 1.6; /* Altura de línea cómoda */
+  min-height: 100vh; /* Altura mínima de viewport */
+  background-attachment: fixed; /* Fondo fijo al hacer scroll */
 }
 
+/* Contenedor principal */
 .container {
-  max-width: 1100px;
-  margin: 30px auto;
-  padding: 0 20px;
+  max-width: 1200px; /* Ancho máximo responsive */
+  margin: 40px auto; /* Centrado con margen superior */
+  padding: 0 25px; /* Padding lateral */
+  animation: fadeInUp 0.8s ease-out; /* Animación de entrada */
 }
 
-/* === ENCABEZADO === */
+/* === ANIMACIONES === */
+@keyframes fadeInUp {
+  from {
+    opacity: 0; /* Comienza invisible */
+    transform: translateY(30px); /* Comienza desplazado hacia abajo */
+  }
+  to {
+    opacity: 1; /* Termina visible */
+    transform: translateY(0); /* Termina en posición normal */
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0; /* Comienza invisible */
+    transform: translateX(-30px); /* Comienza desplazado a la izquierda */
+  }
+  to {
+    opacity: 1; /* Termina visible */
+    transform: translateX(0); /* Termina en posición normal */
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1); /* Tamaño normal */
+  }
+  50% {
+    transform: scale(1.05); /* Aumenta ligeramente */
+  }
+  100% {
+    transform: scale(1); /* Vuelve al tamaño normal */
+  }
+}
+
+@keyframes bounceIn {
+  0% {
+    opacity: 0; /* Comienza invisible */
+    transform: scale(0.3); /* Comienza muy pequeño */
+  }
+  50% {
+    opacity: 1; /* Se hace visible */
+    transform: scale(1.05); /* Se agranda un poco */
+  }
+  70% {
+    transform: scale(0.9); /* Se reduce un poco */
+  }
+  100% {
+    opacity: 1; /* Termina visible */
+    transform: scale(1); /* Tamaño normal */
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -468px 0; /* Posición inicial del efecto brillo */
+  }
+  100% {
+    background-position: 468px 0; /* Posición final del efecto brillo */
+  }
+}
+
+@keyframes glow {
+  0%, 100% {
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8), /* Sombra de texto suave */
+                 0 0 20px rgba(255, 255, 255, 0.6),
+                 0 0 30px rgba(255, 255, 255, 0.4);
+  }
+  50% {
+    text-shadow: 0 0 15px rgba(255, 255, 255, 1), /* Sombra de texto más intensa */
+                 0 0 30px rgba(255, 255, 255, 0.8),
+                 0 0 45px rgba(255, 255, 255, 0.6);
+  }
+}
+
+/* === ENCABEZADO MEJORADO CON TÍTULO VISIBLE === */
 header {
-  text-align: center;
-  margin-bottom: 30px;
+  text-align: center; /* Centrado de texto */
+  margin-bottom: 40px; /* Espacio inferior */
+  animation: slideInLeft 0.8s ease-out; /* Animación de entrada */
+  position: relative; /* Posición relativa para elementos hijos */
 }
 
 header h1 {
-  margin: 0;
-  color: var(--primary-color);
-  font-size: 2.2em;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
+  margin: 0; /* Sin margen */
+  color: var(--title-color); /* Color blanco */
+  font-size: 3.2em; /* Tamaño grande de fuente */
+  font-weight: 800; /* Negrita extrema */
+  display: flex; /* Flexbox para alineación */
+  align-items: center; /* Centrado vertical */
+  justify-content: center; /* Centrado horizontal */
+  gap: 15px; /* Espacio entre elementos */
+  text-shadow: 0 4px 15px rgba(0, 0, 0, 0.3), /* Sombra de texto múltiple */
+               0 0 30px rgba(255, 255, 255, 0.5),
+               2px 2px 4px rgba(0, 0, 0, 0.5);
+  animation: glow 3s ease-in-out infinite; /* Animación de brillo constante */
+  position: relative; /* Posición relativa para pseudo-elementos */
+  padding: 20px 0; /* Padding vertical */
+  background: transparent; /* Fondo transparente */
+  overflow: visible; /* Contenido visible */
 }
 
+/* Fondo decorativo para el título */
+header h1::before {
+  content: ''; /* Contenido vacío */
+  position: absolute; /* Posición absoluta */
+  top: 50%; /* Centrado vertical */
+  left: 50%; /* Centrado horizontal */
+  transform: translate(-50%, -50%); /* Centrado perfecto */
+  width: calc(100% + 40px); /* Ancho extendido */
+  height: calc(100% + 20px); /* Alto extendido */
+  background: linear-gradient(135deg, 
+    rgba(255, 255, 255, 0.1) 0%,
+    rgba(255, 255, 255, 0.05) 50%,
+    rgba(255, 255, 255, 0.1) 100%); /* Gradiente sutil */
+  border-radius: 20px; /* Bordes redondeados */
+  z-index: -1; /* Detrás del texto */
+  backdrop-filter: blur(10px); /* Efecto de desenfoque */
+  border: 1px solid rgba(255, 255, 255, 0.2); /* Borde sutil */
+  animation: shimmer 3s infinite; /* Animación de brillo */
+}
+
+/* Estilo del icono de reciclaje */
+header h1 .fa-recycle {
+  color: #4CAF50; /* Color verde */
+  text-shadow: 0 0 20px #4CAF50, /* Sombra verde brillante */
+               0 0 30px #4CAF50,
+               0 0 40px #4CAF50;
+  animation: spin 4s linear infinite; /* Animación de rotación constante */
+}
+
+/* Animación de rotación para el icono */
+@keyframes spin {
+  0% {
+    transform: rotate(0deg); /* Comienza sin rotación */
+  }
+  100% {
+    transform: rotate(360deg); /* Termina rotación completa */
+  }
+}
+
+/* Línea decorativa bajo el título */
+header h1::after {
+  content: ''; /* Contenido vacío */
+  position: absolute; /* Posición absoluta */
+  bottom: 0; /* Al fondo */
+  left: 50%; /* Centrado horizontal */
+  transform: translateX(-50%); /* Centrado perfecto */
+  width: 150px; /* Ancho fijo */
+  height: 4px; /* Alto pequeño */
+  background: linear-gradient(90deg, 
+    #4CAF50, 
+    #2196F3, 
+    #9C27B0, 
+    #4CAF50); /* Gradiente multicolor */
+  border-radius: 2px; /* Bordes ligeramente redondeados */
+  background-size: 200% 100%; /* Tamaño para animación */
+  animation: gradientMove 3s ease-in-out infinite; /* Animación de movimiento */
+}
+
+/* Animación para la línea de gradiente */
+@keyframes gradientMove {
+  0%, 100% {
+    background-position: 0% 50%; /* Posición inicial/final */
+  }
+  50% {
+    background-position: 100% 50%; /* Posición intermedia */
+  }
+}
+
+/* Estilo del subtítulo */
 header p {
-  color: var(--secondary-color);
-  font-weight: 500;
-  font-size: 1.1em;
+  color: rgba(255, 255, 255, 0.9); /* Blanco semi-transparente */
+  font-weight: 600; /* Negrita */
+  font-size: 1.3em; /* Tamaño de fuente mediano */
+  margin-top: 15px; /* Espacio superior */
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3); /* Sombra de texto */
+  animation: fadeInUp 1s ease-out 0.3s both; /* Animación retardada */
+  background: rgba(0, 0, 0, 0.2); /* Fondo oscuro semi-transparente */
+  padding: 10px 20px; /* Padding interno */
+  border-radius: 25px; /* Bordes muy redondeados */
+  display: inline-block; /* Display en línea con dimensiones */
+  backdrop-filter: blur(10px); /* Efecto de desenfoque */
+  position: relative; /* Posición relativa */
+  z-index: 1; /* Por encima de otros elementos */
 }
 
-/* === PESTAÑAS === */
+/* === PESTAÑAS MEJORADAS === */
 .tabs {
-  display: flex;
-  margin-bottom: 20px;
-  border-bottom: 1px solid #ddd;
+  display: flex; /* Flexbox para alineación horizontal */
+  margin-bottom: 30px; /* Espacio inferior */
+  border-bottom: 2px solid rgba(255, 255, 255, 0.2); /* Línea inferior sutil */
+  background: rgba(255, 255, 255, 0.1); /* Fondo semi-transparente */
+  backdrop-filter: blur(10px); /* Efecto de desenfoque */
+  border-radius: var(--radius); /* Bordes redondeados */
+  padding: 5px; /* Padding interno */
+  animation: fadeInUp 0.8s ease-out 0.2s both; /* Animación retardada */
 }
 
+/* Botones de pestañas */
 .tab-button {
-  background: none;
-  border: none;
-  padding: 12px 24px;
-  font-size: 1em;
-  font-weight: 600;
-  cursor: pointer;
-  color: var(--dark-color);
-  border-bottom: 3px solid transparent;
-  transition: all 0.3s;
+  background: transparent; /* Fondo transparente */
+  border: none; /* Sin borde */
+  padding: 15px 30px; /* Padding interno */
+  font-size: 1.1em; /* Tamaño de fuente */
+  font-weight: 600; /* Negrita */
+  cursor: pointer; /* Cursor de pointer */
+  color: rgba(255, 255, 255, 0.8); /* Color semi-transparente */
+  border-radius: 12px; /* Bordes redondeados */
+  transition: var(--transition); /* Transición suave */
+  flex: 1; /* Ocupa todo el espacio disponible */
+  position: relative; /* Posición relativa para pseudo-elementos */
+  overflow: hidden; /* Oculta desbordamiento */
 }
 
+/* Efecto de brillo al pasar mouse */
+.tab-button::before {
+  content: ''; /* Contenido vacío */
+  position: absolute; /* Posición absoluta */
+  top: 0; /* Arriba */
+  left: -100%; /* Fuera a la izquierda */
+  width: 100%; /* Ancho completo */
+  height: 100%; /* Alto completo */
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent); /* Gradiente brillante */
+  transition: left 0.5s; /* Transición de posición */
+}
+
+/* Mover efecto de brillo al hacer hover */
+.tab-button:hover::before {
+  left: 100%; /* Mover a la derecha */
+}
+
+/* Efectos al hacer hover */
 .tab-button:hover {
-  color: var(--primary-color);
+  color: white; /* Color blanco sólido */
+  transform: translateY(-2px); /* Levantar ligeramente */
 }
 
+/* Pestaña activa */
 .tab-button.active {
-  color: var(--primary-color);
-  border-bottom: 3px solid var(--primary-color);
+  background: rgba(255, 255, 255, 0.2); /* Fondo semi-transparente */
+  color: white; /* Color blanco */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Sombra */
+  transform: translateY(-2px); /* Levantar ligeramente */
 }
 
-.tab-content {
-  display: none;
-}
-
-.tab-content.active {
-  display: block;
-  animation: fadeIn 0.5s;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-/* === TARJETA PRINCIPAL === */
+/* === TARJETA PRINCIPAL MEJORADA === */
 .card {
-  background: #fff;
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  padding: 25px;
-  margin-bottom: 20px;
+  background: rgba(255, 255, 255, 0.95); /* Fondo blanco semi-transparente */
+  backdrop-filter: blur(20px); /* Fuerte efecto de desenfoque */
+  border-radius: var(--radius); /* Bordes redondeados */
+  box-shadow: var(--shadow); /* Sombra estándar */
+  padding: 30px; /* Padding interno */
+  margin-bottom: 25px; /* Espacio inferior */
+  border: 1px solid rgba(255, 255, 255, 0.3); /* Borde sutil */
+  transition: var(--transition); /* Transición suave */
+  animation: fadeInUp 0.8s ease-out 0.4s both; /* Animación retardada */
 }
 
+/* Efectos al hacer hover en tarjetas */
+.card:hover {
+  box-shadow: var(--shadow-hover); /* Sombra más pronunciada */
+  transform: translateY(-5px); /* Levantar más */
+}
+
+/* Títulos dentro de tarjetas */
 .card h2 {
-  margin-top: 0;
-  color: var(--primary-color);
-  display: flex;
-  align-items: center;
-  gap: 10px;
+  margin-top: 0; /* Sin margen superior */
+  background: var(--gradient-primary); /* Gradiente de fondo */
+  -webkit-background-clip: text; /* Clip de fondo para texto (Webkit) */
+  -webkit-text-fill-color: transparent; /* Texto transparente (Webkit) */
+  background-clip: text; /* Clip de fondo para texto */
+  display: flex; /* Flexbox para alineación */
+  align-items: center; /* Centrado vertical */
+  gap: 12px; /* Espacio entre elementos */
+  font-size: 1.8em; /* Tamaño de fuente grande */
 }
 
-/* === FORMULARIOS === */
+/* === FORMULARIOS MEJORADOS === */
 .form-group {
-  display: flex;
-  align-items: center;
-  margin-bottom: 15px;
-  gap: 10px;
+  display: flex; /* Flexbox para alineación horizontal */
+  align-items: center; /* Centrado vertical */
+  margin-bottom: 20px; /* Espacio inferior */
+  gap: 15px; /* Espacio entre elementos */
+  animation: fadeInUp 0.8s ease-out 0.6s both; /* Animación retardada */
 }
 
+/* Etiquetas de formulario */
 .form-group label {
-  width: 150px;
-  font-weight: 600;
-  display: flex;
-  align-items: center;
-  gap: 8px;
+  width: 160px; /* Ancho fijo */
+  font-weight: 600; /* Negrita */
+  display: flex; /* Flexbox para alineación */
+  align-items: center; /* Centrado vertical */
+  gap: 10px; /* Espacio entre elementos */
+  color: var(--dark-color); /* Color oscuro */
+  transition: var(--transition); /* Transición suave */
 }
 
-.form-group input, .form-group select {
-  flex: 1;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  font-size: 1em;
-  transition: border 0.3s;
+/* Campos de entrada y select */
+.form-group input,
+.form-group select {
+  flex: 1; /* Ocupa todo el espacio disponible */
+  padding: 12px 16px; /* Padding interno */
+  border: 2px solid #e1e5e9; /* Borde gris claro */
+  border-radius: 10px; /* Bordes redondeados */
+  font-size: 1em; /* Tamaño de fuente normal */
+  transition: var(--transition); /* Transición suave */
+  background: rgba(255, 255, 255, 0.8); /* Fondo semi-transparente */
 }
 
-input:focus, select:focus {
-  border-color: var(--primary-color);
-  outline: none;
-  box-shadow: 0 0 0 2px rgba(30, 136, 229, 0.2);
+/* Estados de foco en campos */
+.form-group input:focus,
+.form-group select:focus {
+  border-color: var(--primary-color); /* Borde azul */
+  outline: none; /* Sin outline por defecto */
+  box-shadow: 0 0 0 4px rgba(30, 136, 229, 0.1); /* Sombra de foco */
+  transform: translateY(-2px); /* Levantar ligeramente */
 }
 
-/* === TABLAS === */
+/* Efecto en etiquetas al hacer hover */
+.form-group:hover label {
+  transform: translateX(5px); /* Desplazar a la derecha */
+}
+
+/* === TABLAS MEJORADAS === */
 .table-container {
-  overflow-x: auto;
+  overflow-x: auto; /* Scroll horizontal si es necesario */
+  border-radius: 12px; /* Bordes redondeados */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Sombra */
+  animation: fadeInUp 0.8s ease-out 0.8s both; /* Animación retardada */
 }
 
+/* Tablas generales */
 table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 15px;
+  width: 100%; /* Ancho completo */
+  border-collapse: collapse; /* Colapsar bordes */
+  margin-top: 0; /* Sin margen superior */
 }
 
+/* Encabezados de tabla */
 th {
-  background: var(--primary-color);
-  color: white;
-  padding: 12px 15px;
-  font-weight: 600;
-  text-align: left;
+  background: var(--gradient-primary); /* Gradiente azul */
+  color: white; /* Texto blanco */
+  padding: 16px 20px; /* Padding interno */
+  font-weight: 600; /* Negrita */
+  text-align: left; /* Alineación izquierda */
+  position: relative; /* Posición relativa para pseudo-elementos */
+  overflow: hidden; /* Oculta desbordamiento */
 }
 
+/* Efecto de brillo en encabezados */
+th::after {
+  content: ''; /* Contenido vacío */
+  position: absolute; /* Posición absoluta */
+  top: 0; /* Arriba */
+  left: -100%; /* Fuera a la izquierda */
+  width: 100%; /* Ancho completo */
+  height: 100%; /* Alto completo */
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent); /* Gradiente brillante */
+  animation: shimmer 2s infinite; /* Animación constante */
+}
+
+/* Celdas de tabla */
 td {
-  padding: 12px 15px;
-  border-bottom: 1px solid #eee;
+  padding: 16px 20px; /* Padding interno */
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05); /* Línea inferior sutil */
+  transition: var(--transition); /* Transición suave */
 }
 
-tbody tr:nth-child(odd) {
-  background-color: #f9f9f9;
+/* Filas del cuerpo de tabla */
+tbody tr {
+  background: white; /* Fondo blanco */
+  transition: var(--transition); /* Transición suave */
 }
 
+/* Filas pares */
+tbody tr:nth-child(even) {
+  background: #f8fafc; /* Fondo gris muy claro */
+}
+
+/* Efecto hover en filas */
 tbody tr:hover {
-  background-color: #e3f2fd;
-  transition: 0.3s;
+  background: linear-gradient(135deg, #e3f2fd, #f3e5f5); /* Gradiente suave */
+  transform: scale(1.01); /* Agrandar ligeramente */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Sombra */
 }
 
-/* === BOTONES === */
+/* === BOTONES MEJORADOS === */
 button {
-  cursor: pointer;
-  border: none;
-  border-radius: 8px;
-  padding: 10px 18px;
-  font-size: 0.95em;
-  font-weight: 600;
-  transition: all 0.3s;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
+  cursor: pointer; /* Cursor de pointer */
+  border: none; /* Sin borde */
+  border-radius: 12px; /* Bordes redondeados */
+  padding: 12px 24px; /* Padding interno */
+  font-size: 1em; /* Tamaño de fuente normal */
+  font-weight: 600; /* Negrita */
+  transition: var(--transition); /* Transición suave */
+  display: inline-flex; /* Flexbox en línea */
+  align-items: center; /* Centrado vertical */
+  gap: 10px; /* Espacio entre elementos */
+  position: relative; /* Posición relativa para pseudo-elementos */
+  overflow: hidden; /* Oculta desbordamiento */
 }
 
+/* Efecto de brillo en botones */
+button::before {
+  content: ''; /* Contenido vacío */
+  position: absolute; /* Posición absoluta */
+  top: 0; /* Arriba */
+  left: -100%; /* Fuera a la izquierda */
+  width: 100%; /* Ancho completo */
+  height: 100%; /* Alto completo */
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent); /* Gradiente brillante */
+  transition: left 0.5s; /* Transición de posición */
+}
+
+/* Mover efecto de brillo al hacer hover */
+button:hover::before {
+  left: 100%; /* Mover a la derecha */
+}
+
+/* Botón primario */
 .btn-primary {
-  background-color: var(--primary-color);
-  color: white;
+  background: var(--gradient-primary); /* Gradiente azul */
+  color: white; /* Texto blanco */
+  box-shadow: 0 4px 15px rgba(30, 136, 229, 0.3); /* Sombra azul */
 }
 
+/* Efectos hover botón primario */
 .btn-primary:hover {
-  background-color: #1565c0;
-  transform: translateY(-2px);
+  transform: translateY(-3px) scale(1.05); /* Levantar y agrandar */
+  box-shadow: 0 8px 25px rgba(30, 136, 229, 0.4); /* Sombra más intensa */
 }
 
+/* Botón éxito */
 .btn-success {
-  background-color: var(--secondary-color);
-  color: white;
+  background: var(--gradient-success); /* Gradiente verde */
+  color: white; /* Texto blanco */
+  box-shadow: 0 4px 15px rgba(67, 160, 71, 0.3); /* Sombra verde */
 }
 
+/* Efectos hover botón éxito */
 .btn-success:hover {
-  background-color: #2e7d32;
-  transform: translateY(-2px);
+  transform: translateY(-3px) scale(1.05); /* Levantar y agrandar */
+  box-shadow: 0 8px 25px rgba(67, 160, 71, 0.4); /* Sombra más intensa */
 }
 
+/* Botón advertencia */
 .btn-warning {
-  background-color: var(--warning-color);
-  color: white;
+  background: var(--gradient-warning); /* Gradiente naranja */
+  color: white; /* Texto blanco */
+  box-shadow: 0 4px 15px rgba(255, 152, 0, 0.3); /* Sombra naranja */
 }
 
+/* Efectos hover botón advertencia */
 .btn-warning:hover {
-  background-color: #ef6c00;
-  transform: translateY(-2px);
+  transform: translateY(-3px) scale(1.05); /* Levantar y agrandar */
+  box-shadow: 0 8px 25px rgba(255, 152, 0, 0.4); /* Sombra más intensa */
 }
 
+/* Botón peligro */
 .btn-danger {
-  background-color: var(--danger-color);
-  color: white;
+  background: var(--gradient-danger); /* Gradiente rojo */
+  color: white; /* Texto blanco */
+  box-shadow: 0 4px 15px rgba(229, 57, 53, 0.3); /* Sombra roja */
 }
 
+/* Efectos hover botón peligro */
 .btn-danger:hover {
-  background-color: #c62828;
-  transform: translateY(-2px);
+  transform: translateY(-3px) scale(1.05); /* Levantar y agrandar */
+  box-shadow: 0 8px 25px rgba(229, 57, 53, 0.4); /* Sombra más intensa */
 }
 
+/* === BOTÓN ARTÍCULOS === */
+button.articulos {
+  background: var(--gradient-primary); /* Gradiente azul */
+  color: white; /* Texto blanco */
+  padding: 8px 16px; /* Padding más compacto */
+  font-size: 0.9em; /* Tamaño de fuente más pequeño */
+}
+
+/* Efectos hover botón artículos */
+button.articulos:hover {
+  transform: translateY(-2px) scale(1.05); /* Levantar y agrandar ligeramente */
+  box-shadow: 0 6px 20px rgba(30, 136, 229, 0.4); /* Sombra azul */
+}
+
+/* Botón eliminar */
 button.eliminar {
-  background-color: var(--danger-color);
-  color: white;
-  padding: 6px 12px;
-  font-size: 0.85em;
+  background: var(--gradient-danger); /* Gradiente rojo */
+  color: white; /* Texto blanco */
+  padding: 8px 16px; /* Padding más compacto */
+  font-size: 0.9em; /* Tamaño de fuente más pequeño */
 }
 
-button.eliminar:hover {
-  background-color: #c62828;
-}
-
+/* Botón editar */
 button.editar {
-  background-color: var(--warning-color);
-  color: white;
-  padding: 6px 12px;
-  font-size: 0.85em;
+  background: var(--gradient-warning); /* Gradiente naranja */
+  color: white; /* Texto blanco */
+  padding: 8px 16px; /* Padding más compacto */
+  font-size: 0.9em; /* Tamaño de fuente más pequeño */
 }
 
-button.editar:hover {
-  background-color: #ef6c00;
-}
-
-/* === ACCIONES === */
+/* === ACCIONES MEJORADAS === */
 .actions {
-  margin-top: 20px;
-  display: flex;
-  gap: 10px;
+  margin-top: 25px; /* Espacio superior */
+  display: flex; /* Flexbox para alineación horizontal */
+  gap: 15px; /* Espacio entre botones */
+  animation: fadeInUp 0.8s ease-out 1s both; /* Animación retardada */
 }
 
-/* === RESUMEN === */
+/* === RESUMEN MEJORADO === */
 .resumen {
-  margin-top: 15px;
-  text-align: right;
-  font-size: 1.2em;
-  color: #1b5e20;
-  padding: 15px;
-  background-color: #e8f5e9;
-  border-radius: 8px;
+  margin-top: 20px; /* Espacio superior */
+  text-align: center; /* Texto centrado */
+  font-size: 1.4em; /* Tamaño de fuente grande */
+  color: #1b5e20; /* Color verde oscuro */
+  padding: 20px; /* Padding interno */
+  background: var(--gradient-success); /* Gradiente verde */
+  color: white; /* Texto blanco */
+  border-radius: 15px; /* Bordes redondeados */
+  box-shadow: 0 6px 20px rgba(67, 160, 71, 0.3); /* Sombra verde */
+  animation: pulse 2s infinite; /* Animación de pulso constante */
+  position: relative; /* Posición relativa para pseudo-elementos */
+  overflow: hidden; /* Oculta desbordamiento */
 }
 
-/* === MODAL === */
+/* Efecto de brillo en resumen */
+.resumen::before {
+  content: ''; /* Contenido vacío */
+  position: absolute; /* Posición absoluta */
+  top: -50%; /* Fuera arriba */
+  left: -50%; /* Fuera izquierda */
+  width: 200%; /* Doble ancho */
+  height: 200%; /* Doble alto */
+  background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent); /* Gradiente diagonal */
+  animation: shimmer 3s infinite; /* Animación de brillo */
+}
+
+/* === RESUMEN ARTÍCULOS === */
+.resumen-articulos {
+  background: linear-gradient(135deg, #e3f2fd, #f3e5f5); /* Gradiente azul-rosado suave */
+  border-radius: 15px; /* Bordes redondeados */
+  padding: 20px; /* Padding interno */
+  margin: 20px 0; /* Margen vertical */
+  border: 2px solid rgba(30, 136, 229, 0.2); /* Borde azul sutil */
+  display: grid; /* Grid layout */
+  grid-template-columns: 1fr 1fr; /* Dos columnas iguales */
+  gap: 15px; /* Espacio entre elementos */
+  text-align: center; /* Texto centrado */
+}
+
+/* Títulos en resumen artículos */
+.resumen-articulos h3 {
+  margin: 0; /* Sin margen */
+  font-size: 1.2em; /* Tamaño de fuente mediano */
+  color: var(--dark-color); /* Color oscuro */
+}
+
+/* Números en resumen artículos */
+.resumen-articulos span {
+  color: var(--primary-color); /* Color azul */
+  font-weight: bold; /* Negrita */
+}
+
+/* === TABLA ARTÍCULOS === */
+#tablaArticulos th {
+  background: var(--gradient-primary); /* Gradiente azul para encabezados */
+}
+
+/* Efecto hover en tabla artículos */
+#tablaArticulos tbody tr:hover {
+  background: linear-gradient(135deg, #e8f5e8, #f0f8ff); /* Gradiente verde-azul suave */
+  transform: scale(1.01); /* Agrandar ligeramente */
+}
+
+/* === MODAL MEJORADO === */
 .modal {
-  display: none;
-  position: fixed;
-  z-index: 10000;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0,0,0,0.5);
+  display: none; /* Oculto por defecto */
+  position: fixed; /* Posición fija */
+  z-index: 10000; /* Z-index muy alto */
+  left: 0; /* Alineado a la izquierda */
+  top: 0; /* Alineado arriba */
+  width: 100%; /* Ancho completo */
+  height: 100%; /* Alto completo */
+  background: rgba(0, 0, 0, 0.7); /* Fondo oscuro semi-transparente */
+  backdrop-filter: blur(5px); /* Efecto de desenfoque */
+  animation: fadeInUp 0.3s ease-out; /* Animación de entrada */
 }
 
+/* Modal visible */
 .modal.show {
-  display: block;
+  display: block; /* Mostrar como bloque */
 }
 
+/* Contenido del modal */
 .modal-content {
-  background-color: #fff;
-  margin: 5% auto;
-  padding: 0;
-  border-radius: var(--radius);
-  width: 90%;
-  max-width: 600px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-  position: relative;
-  z-index: 10001;
-  animation: slideIn 0.3s ease-out;
+  background: rgba(255, 255, 255, 0.95); /* Fondo blanco semi-transparente */
+  backdrop-filter: blur(20px); /* Fuerte efecto de desenfoque */
+  margin: 5% auto; /* Centrado vertical con margen */
+  padding: 0; /* Sin padding */
+  border-radius: 20px; /* Bordes muy redondeados */
+  width: 90%; /* Ancho del 90% */
+  max-width: 700px; /* Ancho máximo */
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3); /* Sombra intensa */
+  position: relative; /* Posición relativa */
+  z-index: 10001; /* Por encima del fondo */
+  animation: bounceIn 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55); /* Animación de rebote */
+  border: 1px solid rgba(255, 255, 255, 0.3); /* Borde sutil */
 }
 
-@keyframes slideIn {
-  from { transform: translateY(-50px); opacity: 0; }
-  to { transform: translateY(0); opacity: 1; }
-}
-
+/* Encabezado del modal */
 .modal-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px;
-  border-bottom: 1px solid #eee;
-  background-color: #f8f9fa;
+  display: flex; /* Flexbox para alineación */
+  justify-content: space-between; /* Espacio entre elementos */
+  align-items: center; /* Centrado vertical */
+  padding: 25px 30px; /* Padding interno */
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1); /* Línea inferior */
+  background: var(--gradient-primary); /* Gradiente azul */
+  color: white; /* Texto blanco */
+  border-radius: 20px 20px 0 0; /* Bordes redondeados solo arriba */
 }
 
+/* Título del modal */
 .modal-header h2 {
-  margin: 0;
-  color: var(--primary-color);
-  display: flex;
-  align-items: center;
-  gap: 10px;
+  margin: 0; /* Sin margen */
+  display: flex; /* Flexbox para alineación */
+  align-items: center; /* Centrado vertical */
+  gap: 12px; /* Espacio entre elementos */
+  font-size: 1.6em; /* Tamaño de fuente grande */
 }
 
+/* Botón cerrar */
 .close {
-  color: #aaa;
-  font-size: 28px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: color 0.3s;
+  color: white; /* Color blanco */
+  font-size: 32px; /* Tamaño grande */
+  font-weight: bold; /* Negrita */
+  cursor: pointer; /* Cursor de pointer */
+  transition: var(--transition); /* Transición suave */
+  width: 40px; /* Ancho fijo */
+  height: 40px; /* Alto fijo */
+  display: flex; /* Flexbox para centrado */
+  align-items: center; /* Centrado vertical */
+  justify-content: center; /* Centrado horizontal */
+  border-radius: 50%; /* Forma circular */
 }
 
+/* Efectos hover botón cerrar */
 .close:hover {
-  color: var(--dark-color);
+  background: rgba(255, 255, 255, 0.2); /* Fondo semi-transparente */
+  transform: rotate(90deg); /* Rotar 90 grados */
 }
 
+/* Cuerpo del modal */
 .modal-body {
-  padding: 20px;
-  max-height: 70vh;
-  overflow-y: auto;
+  padding: 30px; /* Padding interno */
+  max-height: 70vh; /* Altura máxima del 70% del viewport */
+  overflow-y: auto; /* Scroll vertical si es necesario */
 }
 
-/* === INFO GRID === */
-.info-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 10px;
-}
-
-.info-item {
-  background: white;
-  padding: 10px;
-  border-radius: 6px;
-  border: 1px solid #e9ecef;
-}
-
-/* === SECCIÓN ITEMS EDITAR === */
+/* === SECCIÓN ITEMS EDITAR MEJORADA === */
 .seccion-items {
-  margin: 20px 0;
-  padding: 15px;
-  background-color: #f8f9fa;
-  border-radius: 8px;
-  border: 1px solid #dee2e6;
+  margin: 25px 0; /* Margen vertical */
+  padding: 20px; /* Padding interno */
+  background: linear-gradient(135deg, #f8f9fa, #e9ecef); /* Gradiente gris suave */
+  border-radius: 15px; /* Bordes redondeados */
+  border: 2px dashed #dee2e6; /* Borde discontinuo gris */
+  transition: var(--transition); /* Transición suave */
 }
 
+/* Efectos hover sección items */
+.seccion-items:hover {
+  border-color: var(--primary-color); /* Borde azul */
+  transform: translateY(-2px); /* Levantar ligeramente */
+}
+
+/* Títulos en sección items */
 .seccion-items h4 {
-  margin: 0 0 15px 0;
-  color: var(--primary-color);
-  display: flex;
-  align-items: center;
-  gap: 8px;
+  margin: 0 0 18px 0; /* Margen inferior */
+  background: var(--gradient-primary); /* Gradiente azul */
+  -webkit-background-clip: text; /* Clip de fondo para texto (Webkit) */
+  -webkit-text-fill-color: transparent; /* Texto transparente (Webkit) */
+  background-clip: text; /* Clip de fondo para texto */
+  display: flex; /* Flexbox para alineación */
+  align-items: center; /* Centrado vertical */
+  gap: 10px; /* Espacio entre elementos */
+  font-size: 1.3em; /* Tamaño de fuente mediano */
 }
 
-/* === TABLA EDITAR === */
+/* === TABLA EDITAR MEJORADA === */
 #tablaEditarItems {
-  margin-bottom: 15px;
+  margin-bottom: 20px; /* Espacio inferior */
 }
 
+/* Encabezados tabla editar */
 #tablaEditarItems th {
-  background-color: var(--secondary-color);
+  background: var(--gradient-success); /* Gradiente verde */
 }
 
+/* Campos numéricos en tabla editar */
 #tablaEditarItems input[type="number"] {
-  width: 100%;
-  padding: 6px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  text-align: right;
+  width: 100%; /* Ancho completo */
+  padding: 8px; /* Padding interno */
+  border: 2px solid #e1e5e9; /* Borde gris claro */
+  border-radius: 8px; /* Bordes redondeados */
+  text-align: right; /* Texto alineado a la derecha */
+  transition: var(--transition); /* Transición suave */
 }
 
+/* Estados de foco en campos numéricos */
+#tablaEditarItems input[type="number"]:focus {
+  border-color: var(--primary-color); /* Borde azul */
+  transform: scale(1.02); /* Agrandar ligeramente */
+}
+
+/* Campos de solo lectura */
 #tablaEditarItems input[readonly] {
-  background-color: #f8f9fa;
-  border-color: #e9ecef;
+  background: rgba(248, 249, 250, 0.8); /* Fondo gris muy claro */
+  border-color: #e9ecef; /* Borde gris */
 }
 
-/* === RESUMEN EDITAR === */
+/* === RESUMEN EDITAR MEJORADO === */
 .resumen-editar {
-  margin-top: 15px;
-  text-align: right;
-  font-size: 1.2em;
-  color: #1b5e20;
-  padding: 15px;
-  background-color: #e8f5e9;
-  border-radius: 8px;
-  border: 2px solid #c8e6c9;
+  margin-top: 20px; /* Espacio superior */
+  text-align: center; /* Texto centrado */
+  font-size: 1.4em; /* Tamaño de fuente grande */
+  color: white; /* Texto blanco */
+  padding: 20px; /* Padding interno */
+  background: var(--gradient-success); /* Gradiente verde */
+  border-radius: 15px; /* Bordes redondeados */
+  box-shadow: 0 6px 20px rgba(67, 160, 71, 0.4); /* Sombra verde */
+  border: 2px solid rgba(255, 255, 255, 0.3); /* Borde blanco sutil */
+  animation: pulse 2s infinite; /* Animación de pulso constante */
 }
 
-/* === INFO COMPRA === */
+/* === INFO COMPRA MEJORADA === */
 .info-compra {
-  background-color: #f8f9fa;
-  border-radius: 8px;
-  padding: 15px;
-  margin-bottom: 20px;
-  border-left: 4px solid var(--primary-color);
+  background: linear-gradient(135deg, #f8f9fa, #e3f2fd); /* Gradiente gris-azul suave */
+  border-radius: 15px; /* Bordes redondeados */
+  padding: 20px; /* Padding interno */
+  margin-bottom: 25px; /* Espacio inferior */
+  border-left: 6px solid var(--primary-color); /* Borde izquierdo azul */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Sombra */
+  transition: var(--transition); /* Transición suave */
 }
 
+/* Efectos hover info compra */
+.info-compra:hover {
+  transform: translateX(5px); /* Desplazar a la derecha */
+}
+
+/* Títulos info compra */
 .info-compra h4 {
-  margin: 0 0 12px 0;
-  color: var(--primary-color);
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 1.1em;
+  margin: 0 0 15px 0; /* Margen inferior */
+  background: var(--gradient-primary); /* Gradiente azul */
+  -webkit-background-clip: text; /* Clip de fondo para texto (Webkit) */
+  -webkit-text-fill-color: transparent; /* Texto transparente (Webkit) */
+  background-clip: text; /* Clip de fondo para texto */
+  display: flex; /* Flexbox para alineación */
+  align-items: center; /* Centrado vertical */
+  gap: 10px; /* Espacio entre elementos */
+  font-size: 1.2em; /* Tamaño de fuente mediano */
 }
 
-/* === MEJORAS PARA ELIMINACIÓN === */
-button.eliminar:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
+/* === INFO GRID MEJORADO === */
+.info-grid {
+  display: grid; /* Grid layout */
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Columnas responsive */
+  gap: 15px; /* Espacio entre elementos */
 }
 
-/* === FOOTER === */
+/* Items de información */
+.info-item {
+  background: white; /* Fondo blanco */
+  padding: 15px; /* Padding interno */
+  border-radius: 10px; /* Bordes redondeados */
+  border: 1px solid #e9ecef; /* Borde gris claro */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05); /* Sombra sutil */
+  transition: var(--transition); /* Transición suave */
+}
+
+/* Efectos hover items de información */
+.info-item:hover {
+  transform: translateY(-3px); /* Levantar ligeramente */
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1); /* Sombra más pronunciada */
+}
+
+/* === FOOTER MEJORADO === */
 footer {
-  text-align: center;
-  margin-top: 40px;
-  color: #555;
-  font-size: 0.9em;
-  padding: 20px 0;
+  text-align: center; /* Texto centrado */
+  margin-top: 50px; /* Espacio superior grande */
+  color: white; /* Texto blanco */
+  font-size: 1em; /* Tamaño de fuente normal */
+  padding: 25px 0; /* Padding vertical */
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3); /* Sombra de texto */
+  animation: fadeInUp 0.8s ease-out 1.2s both; /* Animación retardada */
 }
 
+/* Párrafo del footer */
 footer p {
-  margin: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 5px;
+  margin: 0; /* Sin margen */
+  display: flex; /* Flexbox para alineación */
+  align-items: center; /* Centrado vertical */
+  justify-content: center; /* Centrado horizontal */
+  gap: 8px; /* Espacio entre elementos */
 }
 
-/* === RESPONSIVE === */
+/* === EFECTOS DE CARGA MEJORADOS === */
+.loading {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%); /* Gradiente de carga */
+  background-size: 200% 100%; /* Tamaño para animación */
+  animation: shimmer 1.5s infinite; /* Animación de brillo constante */
+  border-radius: 8px; /* Bordes redondeados */
+}
+
+/* === RESPONSIVE MEJORADO === */
 @media (max-width: 768px) {
   .container {
-    margin: 15px auto;
+    margin: 20px auto; /* Margen superior reducido */
+    padding: 0 15px; /* Padding lateral reducido */
   }
   
-  .form-group {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-  
-  .form-group label {
-    width: 100%;
-    margin-bottom: 5px;
+  header h1 {
+    font-size: 2.2em; /* Tamaño de fuente reducido */
+    flex-direction: column; /* Columna en lugar de fila */
+    gap: 10px; /* Espacio reducido */
   }
   
   .tabs {
-    flex-direction: column;
+    flex-direction: column; /* Columna en lugar de fila */
+    gap: 5px; /* Espacio reducido */
   }
   
   .tab-button {
-    width: 100%;
-    text-align: center;
+    width: 100%; /* Ancho completo */
+    text-align: center; /* Texto centrado */
+  }
+  
+  .form-group {
+    flex-direction: column; /* Columna en lugar de fila */
+    align-items: stretch; /* Elementos estirados */
+  }
+  
+  .form-group label {
+    width: 100%; /* Ancho completo */
+    margin-bottom: 8px; /* Espacio inferior */
   }
   
   .actions {
-    flex-direction: column;
+    flex-direction: column; /* Columna en lugar de fila */
   }
   
   .modal-content {
-    width: 95%;
-    margin: 10% auto;
+    width: 95%; /* Ancho casi completo */
+    margin: 10% auto; /* Margen superior aumentado */
   }
   
   .info-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr; /* Una sola columna */
+  }
+  
+  button {
+    width: 100%; /* Ancho completo */
+    justify-content: center; /* Centrado horizontal */
+  }
+  
+  .resumen-articulos {
+    grid-template-columns: 1fr; /* Una sola columna */
+    gap: 10px; /* Espacio reducido */
+  }
+}
+
+/* === EFECTO DE PARTICULAS (OPCIONAL) === */
+body::before {
+  content: ''; /* Contenido vacío */
+  position: fixed; /* Posición fija */
+  top: 0; /* Arriba */
+  left: 0; /* Izquierda */
+  width: 100%; /* Ancho completo */
+  height: 100%; /* Alto completo */
+  background: 
+    radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%), /* Partícula púrpura */
+    radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.3) 0%, transparent 50%), /* Partícula rosada */
+    radial-gradient(circle at 40% 40%, rgba(120, 219, 255, 0.3) 0%, transparent 50%); /* Partícula azul */
+  z-index: -1; /* Detrás de todo */
+  animation: float 6s ease-in-out infinite; /* Animación de flotación */
+}
+
+/* Animación de flotación para partículas */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg); /* Posición normal */
+  }
+  50% {
+    transform: translateY(-20px) rotate(180deg); /* Flotar hacia arriba y rotar */
   }
 }
