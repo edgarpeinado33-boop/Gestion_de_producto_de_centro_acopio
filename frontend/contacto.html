@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contáctanos - Centro de Acopio</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1><i class="fas fa-recycle"></i> Centro de Acopio de Papel</h1>
+      <p>Formulario de Contacto</p>
+      <nav>
+        <a href="index.html">Inicio</a>
+        <a href="contacto.html" class="activo">Contáctanos</a>
+      </nav>
+    </header>
+
+    <div class="card">
+      <h2><i class="fas fa-envelope"></i> Contáctanos</h2>
+      <p>¿Tienes alguna pregunta, sugerencia o reclamo? Completa el siguiente formulario y nos pondremos en contacto contigo.</p>
+      
+      <!-- Cambiar el formulario para permitir archivos adjuntos -->
+      <form action="../backend/enviar_correo.php" method="POST" class="contact-form" enctype="multipart/form-data">
+        <div class="form-group">
+          <label for="nombre"><i class="fas fa-user"></i> Nombre completo:</label>
+          <input type="text" id="nombre" name="nombre" placeholder="Ingresa tu nombre completo" required>
+        </div>
+
+        <div class="form-group">
+          <label for="email"><i class="fas fa-envelope"></i> Correo electrónico:</label>
+          <input type="email" id="email" name="email" placeholder="Ingresa tu correo electrónico" required>
+        </div>
+
+        <div class="form-group">
+          <label for="motivo"><i class="fas fa-question-circle"></i> Motivo del contacto:</label>
+          <select id="motivo" name="motivo" required>
+            <option value="">Selecciona un motivo</option>
+            <option value="reclamo">Reclamo</option>
+            <option value="catalogo">Solicitud de catálogo</option>
+            <option value="consulta">Consulta general</option>
+            <option value="sugerencia">Sugerencia</option>
+            <option value="otro">Otro</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="mensaje"><i class="fas fa-comment"></i> Mensaje:</label>
+          <textarea id="mensaje" name="mensaje" rows="5" placeholder="Escribe tu mensaje aquí..." required></textarea>
+        </div>
+
+        <!-- Nuevo campo para archivos adjuntos -->
+        <div class="form-group">
+          <label for="adjuntos"><i class="fas fa-paperclip"></i> Archivos adjuntos:</label>
+          <input type="file" id="adjuntos" name="adjuntos[]" multiple 
+                 accept=".jpg,.jpeg,.png,.gif,.pdf,.doc,.docx,.xls,.xlsx"
+                 style="padding: 8px; border: 1px solid #ddd; border-radius: 4px; width: 100%;">
+          <small style="color: #666; font-size: 0.9rem;">
+            
+          </small>
+        </div>
+Formatos permitidos: JPG, PNG, GIF, PDF, DOC, DOCX, XLS, XLSX (Máximo 5MB por archivo)
+        <div class="actions">
+          <button type="submit" class="btn-success">
+            <i class="fas fa-paper-plane"></i> Enviar Mensaje
+          </button>
+          
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <footer>
+    <p>© 2025 Centro de Acopio | Desarrollado con <i class="fas fa-heart"></i> y PHP + JS</p>
+  </footer>
+
+  <script>
+    // Validación adicional del tamaño de archivos
+    document.getElementById('adjuntos').addEventListener('change', function(e) {
+      const files = e.target.files;
+      const maxSize = 5 * 1024 * 1024; // 5MB
+      
+      for (let i = 0; i < files.length; i++) {
+        if (files[i].size > maxSize) {
+          alert('El archivo "' + files[i].name + '" excede el tamaño máximo de 5MB.');
+          e.target.value = ''; // Limpiar selección
+          break;
+        }
+      }
+    });
+  </script>
+</body>
+</html>

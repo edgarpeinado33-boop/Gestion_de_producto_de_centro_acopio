@@ -167,6 +167,17 @@ header h1::before {
   border: 1px solid rgba(255, 255, 255, 0.2); /* Borde sutil */
   animation: shimmer 3s infinite; /* Animación de brillo */
 }
+nav a {
+  color: white;
+  margin: 0 10px;
+  text-decoration: none;
+}
+
+nav a.activo {
+  font-weight: bold;
+  text-decoration: underline;
+}
+
 
 /* Estilo del icono de reciclaje */
 header h1 .fa-recycle {
@@ -941,4 +952,24 @@ body::before {
   50% {
     transform: translateY(-20px) rotate(180deg); /* Flotar hacia arriba y rotar */
   }
+}
+/* Estilos para el campo de archivos adjuntos */
+.contact-form input[type="file"] {
+  background-color: #f8f9fa;
+  transition: all 0.3s ease;
+}
+
+.contact-form input[type="file"]:hover {
+  background-color: #e9ecef;
+  border-color: #3498db;
+}
+
+.contact-form small {
+  display: block;
+  margin-top: 0.25rem;
+}
+
+/* Mejoras visuales para el formulario de contacto */
+.contact-form {
+  max-width: 700px;
 }
